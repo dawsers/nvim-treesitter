@@ -430,11 +430,11 @@ local function run_install(cache_folder, install_folder, lang, repo, with_sync, 
     --- @return string[]?
     local function add_to_env(env)
       --- @type table<string,string|number>
-      env = vim.tbl_extend('force', vim.fn.environ(), env or {})
+      env = vim.tbl_extend("force", vim.fn.environ(), env or {})
 
       local renv = {} --- @type string[]
       for k, v in pairs(env) do
-        renv[#renv + 1] = string.format('%s=%s', k, tostring(v))
+        renv[#renv + 1] = string.format("%s=%s", k, tostring(v))
       end
 
       return renv
@@ -449,7 +449,7 @@ local function run_install(cache_folder, install_folder, lang, repo, with_sync, 
         opts = {
           args = M.ts_generate_args,
           cwd = compile_location,
-          env = env
+          env = env,
         },
       },
     })
