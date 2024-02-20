@@ -1,3 +1,7 @@
+(hard_line_break) @string.escape.hard_line_break
+
+(tag) @markup.tag
+
 ; From MDeiml/tree-sitter-markdown
 (code_span) @markup.raw @nospell
 
@@ -12,7 +16,6 @@
 
 [
   (backslash_escape)
-  (hard_line_break)
 ] @string.escape
 
 ; Conceal codeblock and text style markers
@@ -77,10 +80,13 @@
 
 [
   (link_label)
-  (link_text)
-  (link_title)
   (image_description)
 ] @markup.link.label
+
+[
+  (link_text)
+  (link_title)
+] @markup.link.text
 
 ; Replace common HTML entities.
 ((entity_reference) @character.special

@@ -37,30 +37,39 @@
   (pipe_table_cell) @markup.heading)
 
 (pipe_table_header
-  "|" @punctuation.special)
+  "|" @punctuation.table)
 
 (pipe_table_row
-  "|" @punctuation.special)
+  "|" @punctuation.table)
 
 (pipe_table_delimiter_row
-  "|" @punctuation.special)
+  "|" @punctuation.table)
 
-(pipe_table_delimiter_cell) @punctuation.special
+(pipe_table_delimiter_cell) @punctuation.table
+
+(pipe_table_cell) @punctuation.table
 
 ; Code blocks (conceal backticks and language annotation)
 (indented_code_block) @markup.raw.block
 
-((fenced_code_block) @markup.raw.block
-  (#set! "priority" 90))
+[
+  (fenced_code_block_delimiter)
+] @markup.raw.delimiter
 
-(fenced_code_block
-  (fenced_code_block_delimiter) @markup.raw.delimiter
-  (#set! conceal ""))
+[
+  (fenced_code_block (info_string))
+] @markup.raw.info
 
-(fenced_code_block
-  (info_string
-    (language) @conceal
-    (#set! conceal "")))
+(code_fence_content) @none
+
+;((fenced_code_block) @markup.raw.block
+;  (#set! "priority" 90))
+;
+;(fenced_code_block_delimiter) @markup.raw.delimiter
+;
+;[
+;  (fenced_code_block (info_string) (#set! "priority" 105)) @markup.raw.info
+;]
 
 (link_destination) @markup.link.url
 
@@ -75,6 +84,7 @@
   (list_marker_star)
   (list_marker_dot)
   (list_marker_parenthesis)
+  (thematic_break)
 ] @markup.list
 
 ; NOTE: The following has been commented out due to issues with spaces in the
@@ -98,7 +108,7 @@
 ;   @punctuation.special
 ;   (#eq? @punctuation.special "-")
 ;   (#set! conceal "—"))
-(thematic_break) @punctuation.special
+; (thematic_break) @punctuation.special
 
 (task_list_marker_unchecked) @markup.list.unchecked
 
