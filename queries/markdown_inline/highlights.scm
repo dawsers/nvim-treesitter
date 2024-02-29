@@ -1,6 +1,6 @@
 (hard_line_break) @string.escape.hard_line_break
 
-(tag) @markup.tag
+(tag) @markup.tag @nospell
 
 ; From MDeiml/tree-sitter-markdown
 (code_span) @markup.raw @nospell
