@@ -24,9 +24,9 @@
 
 (kw_equals) @keyword.operator
 
-(structural) @type.qualifier
+(structural) @keyword.modifier
 
-(unique) @type.qualifier
+(unique) @keyword.modifier
 
 (type_constructor) @constructor
 
@@ -65,8 +65,8 @@
 (type_name) @type
 
 (ability_declaration
-  type_name: (wordy_id) @type
-  type_arg: (wordy_id) @variable.parameter)
+  (ability_name) @type
+  (type_argument) @variable.parameter)
 
 (effect
   (wordy_id) @attribute) ; NOTE: an effect is a special type

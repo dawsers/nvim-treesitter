@@ -1,40 +1,36 @@
-; Schemes
-(scheme) @type
-
 ; Methods
 (method) @function.method
 
-; Constants
-(const_spec) @constant
+; Headers
+(header
+  name: (_) @constant)
 
 ; Variables
-(identifier) @variable
-
-; Fields
-(pair
-  name: (identifier) @variable.member)
-
-; Parameters
-(query_param
-  (key) @variable.parameter)
+(variable_declaration
+  name: (identifier) @variable)
 
 ; Operators
-[
-  "="
-  "?"
-  "&"
-  "@"
-] @operator
+(comment
+  "=" @operator)
+
+(variable_declaration
+  "=" @operator)
+
+; keywords
+(comment
+  "@" @keyword
+  name: (_) @keyword)
 
 ; Literals
-(string) @string
+(request
+  url: (_) @string.special.url)
 
-(target_url) @string.special.url
+(http_version) @constant
 
-(number) @number
+; Response
+(status_code) @number
 
-; (boolean) @boolean
-(null) @constant.builtin
+(status_text) @string
 
 ; Punctuation
 [
@@ -42,7 +38,15 @@
   "}}"
 ] @punctuation.bracket
 
-":" @punctuation.delimiter
+(header
+  ":" @punctuation.delimiter)
+
+; external JSON body
+(external_body
+  path: (_) @string.special.path)
 
 ; Comments
-(comment) @comment @spell
+[
+  (comment)
+  (request_separator)
+] @comment @spell
